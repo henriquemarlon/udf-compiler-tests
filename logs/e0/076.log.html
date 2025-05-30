@@ -1,0 +1,22 @@
+<pre>
+Checking project structure...
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+targets/xml_writer.cpp:132:6: error: variable or field 'do_tensor_node' declared void
+  132 | void udf::xml_writer::do_tensor_node(udf::tensor_node * const node, int lvl) {
+      |      ^~~
+targets/xml_writer.cpp:132:43: error: 'tensor_node' is not a member of 'udf'; did you mean 'tensor_dim_node'?
+  132 | void udf::xml_writer::do_tensor_node(udf::tensor_node * const node, int lvl) {
+      |                                           ^~~~~~~~~~~
+      |                                           tensor_dim_node
+targets/xml_writer.cpp:132:57: error: expected primary-expression before 'const'
+  132 | void udf::xml_writer::do_tensor_node(udf::tensor_node * const node, int lvl) {
+      |                                                         ^~~~~
+targets/xml_writer.cpp:132:69: error: expected primary-expression before 'int'
+  132 | void udf::xml_writer::do_tensor_node(udf::tensor_node * const node, int lvl) {
+      |                                                                     ^~~
+make: *** [Makefile:46: targets/xml_writer.o] Error 1
+

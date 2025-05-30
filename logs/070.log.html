@@ -1,0 +1,468 @@
+<pre>
+Checking project structure...
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+udf_parser.y: warning: 22 nonterminals useless in grammar [-Wother]
+udf_parser.y: warning: 66 rules useless in grammar [-Wother]
+udf_parser.y:147.1-12: warning: nonterminal useless in grammar: declarations [-Wother]
+  147 | declarations :              declaration { $$ = new cdk::sequence_node...
+      | ^~~~~~~~~~~~
+udf_parser.y:151.1-11: warning: nonterminal useless in grammar: declaration [-Wother]
+  151 | declaration  : vardec ';' { $$ = $1; }
+      | ^~~~~~~~~~~
+udf_parser.y:155.1-6: warning: nonterminal useless in grammar: vardec [-Wother]
+  155 | vardec       : tREQUIRE data_type  tID                         { $$ =...
+      | ^~~~~~
+udf_parser.y:170.1-7: warning: nonterminal useless in grammar: vardecs [-Wother]
+  170 | vardecs      : vardec ';'          { $$ = new cdk::sequence_node(LINE...
+      | ^~~~~~~
+udf_parser.y:174.1-11: warning: nonterminal useless in grammar: opt_vardecs [-Wother]
+  174 | opt_vardecs  : /* empty */ { $$ = NULL; }
+      | ^~~~~~~~~~~
+udf_parser.y:178.1-11: warning: nonterminal useless in grammar: identifiers [-Wother]
+  178 | identifiers  : tID { $$ = new std::vector<std::string>(); $$->push_ba...
+      | ^~~~~~~~~~~
+udf_parser.y:182.1-9: warning: nonterminal useless in grammar: data_type [-Wother]
+  182 | data_type    : tTYPE_STRING                     { $$ = cdk::primitive...
+      | ^~~~~~~~~
+udf_parser.y:188.1-15: warning: nonterminal useless in grammar: opt_initializer [-Wother]
+  188 | opt_initializer  : /* empty */         { $$ = nullptr; }
+      | ^~~~~~~~~~~~~~~
+udf_parser.y:192.1-9: warning: nonterminal useless in grammar: void_type [-Wother]
+  192 | void_type   : tPROCEDURE { $$ = cdk::primitive_type::create(0, cdk::T...
+      | ^~~~~~~~~
+udf_parser.y:195.1-6: warning: nonterminal useless in grammar: fundec [-Wother]
+  195 | fundec   :         data_type  tID '(' argdecs ')' block { $$ = new ud...
+      | ^~~~~~
+udf_parser.y:203.1-7: warning: nonterminal useless in grammar: argdecs [-Wother]
+  203 | argdecs  : /* empty */         { $$ = new cdk::sequence_node(LINE);  }
+      | ^~~~~~~
+udf_parser.y:208.1-6: warning: nonterminal useless in grammar: argdec [-Wother]
+  208 | argdec   : data_type tID { $$ = new og::variable_declaration_node(LIN...
+      | ^~~~~~
+udf_parser.y:211.1-5: warning: nonterminal useless in grammar: block [-Wother]
+  211 | block    : '{' opt_vardecs opt_instructions '}' { $$ = new og::block_...
+      | ^~~~~
+udf_parser.y:214.1-6: warning: nonterminal useless in grammar: fordec [-Wother]
+  214 | fordec   : data_type tID '=' expr { $$ = new og::variable_declaration...
+      | ^~~~~~
+udf_parser.y:217.1-7: warning: nonterminal useless in grammar: fordecs [-Wother]
+  217 | fordecs         :             fordec { $$ = new cdk::sequence_node(LI...
+      | ^~~~~~~
+udf_parser.y:221.1-11: warning: nonterminal useless in grammar: opt_forinit [-Wother]
+  221 | opt_forinit     : /**/     { $$ = new cdk::sequence_node(LINE, NIL); }
+      | ^~~~~~~~~~~
+udf_parser.y:231.1-6: warning: nonterminal useless in grammar: return [-Wother]
+  231 | return          : tRETURN             ';' { $$ = new udf::return_node...
+      | ^~~~~~
+udf_parser.y:235.1-12: warning: nonterminal useless in grammar: instructions [-Wother]
+  235 | instructions    : instruction                { $$ = new cdk::sequence...
+      | ^~~~~~~~~~~~
+udf_parser.y:239.1-16: warning: nonterminal useless in grammar: opt_instructions [-Wother]
+  239 | opt_instructions: /* empty */  { $$ = new cdk::sequence_node(LINE); }
+      | ^~~~~~~~~~~~~~~~
+udf_parser.y:243.1-11: warning: nonterminal useless in grammar: instruction [-Wother]
+  243 | instruction     : tIF expr tTHEN instruction                         ...
+      | ^~~~~~~~~~~
+udf_parser.y:255.1-7: warning: nonterminal useless in grammar: iffalse [-Wother]
+  255 | iffalse         : tELSE instruction                             { $$ ...
+      | ^~~~~~~
+udf_parser.y:260.1-6: warning: nonterminal useless in grammar: lvalue [-Wother]
+  260 | lvalue          : tID                                            { $$...
+      | ^~~~~~
+udf_parser.y: warning: 13 shift/reduce conflicts [-Wconflicts-sr]
+udf_parser.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_tensor_index_node(udf::tensor_index_node*, int)':
+targets/xml_writer.cpp:414:74: error: no match for 'operator<<' (operand types are 'std::basic_ostream<char>' and 'const std::vector<int>')
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^~ ~~~~~~~~~~~~~~~
+      |                                                         |                                |
+      |                                                         std::basic_ostream<char>         const std::vector<int>
+In file included from /usr/include/c++/14/iostream:41,
+                 from targets/xml_writer.cpp:2:
+/usr/include/c++/14/ostream:116:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(__ostream_type& (*)(__ostream_type&)) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  116 |       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:116:36: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'std::basic_ostream<char>::__ostream_type& (*)(std::basic_ostream<char>::__ostream_type&)' {aka 'std::basic_ostream<char>& (*)(std::basic_ostream<char>&)'}
+  116 |       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14/ostream:125:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(__ios_type& (*)(__ios_type&)) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>; __ios_type = std::basic_ios<char>]'
+  125 |       operator<<(__ios_type& (*__pf)(__ios_type&))
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:125:32: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'std::basic_ostream<char>::__ios_type& (*)(std::basic_ostream<char>::__ios_type&)' {aka 'std::basic_ios<char>& (*)(std::basic_ios<char>&)'}
+  125 |       operator<<(__ios_type& (*__pf)(__ios_type&))
+      |                  ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/usr/include/c++/14/ostream:135:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::ios_base& (*)(std::ios_base&)) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  135 |       operator<<(ios_base& (*__pf) (ios_base&))
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:135:30: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'std::ios_base& (*)(std::ios_base&)'
+  135 |       operator<<(ios_base& (*__pf) (ios_base&))
+      |                  ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/usr/include/c++/14/ostream:174:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  174 |       operator<<(long __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:174:23: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'long int'
+  174 |       operator<<(long __n)
+      |                  ~~~~~^~~
+/usr/include/c++/14/ostream:178:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  178 |       operator<<(unsigned long __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:178:32: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'long unsigned int'
+  178 |       operator<<(unsigned long __n)
+      |                  ~~~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:182:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(bool) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  182 |       operator<<(bool __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:182:23: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'bool'
+  182 |       operator<<(bool __n)
+      |                  ~~~~~^~~
+/usr/include/c++/14/ostream:186:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(short int) [with _CharT = char; _Traits = std::char_traits<char>]'
+  186 |       operator<<(short __n);
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:186:24: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'short int'
+  186 |       operator<<(short __n);
+      |                  ~~~~~~^~~
+/usr/include/c++/14/ostream:189:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(short unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  189 |       operator<<(unsigned short __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:189:33: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'short unsigned int'
+  189 |       operator<<(unsigned short __n)
+      |                  ~~~~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:197:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(int) [with _CharT = char; _Traits = std::char_traits<char>]'
+  197 |       operator<<(int __n);
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:197:22: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'int'
+  197 |       operator<<(int __n);
+      |                  ~~~~^~~
+/usr/include/c++/14/ostream:200:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  200 |       operator<<(unsigned int __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:200:31: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'unsigned int'
+  200 |       operator<<(unsigned int __n)
+      |                  ~~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:211:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  211 |       operator<<(long long __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:211:28: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'long long int'
+  211 |       operator<<(long long __n)
+      |                  ~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:215:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  215 |       operator<<(unsigned long long __n)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:215:37: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'long long unsigned int'
+  215 |       operator<<(unsigned long long __n)
+      |                  ~~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:231:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(double) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  231 |       operator<<(double __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:231:25: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'double'
+  231 |       operator<<(double __f)
+      |                  ~~~~~~~^~~
+/usr/include/c++/14/ostream:235:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(float) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  235 |       operator<<(float __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:235:24: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'float'
+  235 |       operator<<(float __f)
+      |                  ~~~~~~^~~
+/usr/include/c++/14/ostream:243:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long double) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  243 |       operator<<(long double __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:243:30: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'long double'
+  243 |       operator<<(long double __f)
+      |                  ~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:250:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(_Float16) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  250 |       operator<<(_Float16 __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:250:27: note:   no known conversion for argument 1 from 'const std::vector<int>' to '_Float16'
+  250 |       operator<<(_Float16 __f)
+      |                  ~~~~~~~~~^~~
+/usr/include/c++/14/ostream:259:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(_Float32) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  259 |       operator<<(_Float32 __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:259:27: note:   no known conversion for argument 1 from 'const std::vector<int>' to '_Float32'
+  259 |       operator<<(_Float32 __f)
+      |                  ~~~~~~~~~^~~
+/usr/include/c++/14/ostream:268:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(_Float64) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  268 |       operator<<(_Float64 __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:268:27: note:   no known conversion for argument 1 from 'const std::vector<int>' to '_Float64'
+  268 |       operator<<(_Float64 __f)
+      |                  ~~~~~~~~~^~~
+/usr/include/c++/14/ostream:286:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(__gnu_cxx::__bfloat16_t) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>; __gnu_cxx::__bfloat16_t = __bf16]'
+  286 |       operator<<(__gnu_cxx::__bfloat16_t __f)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:286:42: note:   no known conversion for argument 1 from 'const std::vector<int>' to '__gnu_cxx::__bfloat16_t' {aka '__bf16'}
+  286 |       operator<<(__gnu_cxx::__bfloat16_t __f)
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:301:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(const void*) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  301 |       operator<<(const void* __p)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:301:30: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'const void*'
+  301 |       operator<<(const void* __p)
+      |                  ~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:306:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::nullptr_t) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>; std::nullptr_t = std::nullptr_t]'
+  306 |       operator<<(nullptr_t)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:306:18: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'std::nullptr_t'
+  306 |       operator<<(nullptr_t)
+      |                  ^~~~~~~~~
+/usr/include/c++/14/ostream:313:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(const volatile void*) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]'
+  313 |       operator<<(const volatile void* __p)
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:313:39: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'const volatile void*'
+  313 |       operator<<(const volatile void* __p)
+      |                  ~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/14/ostream:339:7: note: candidate: 'std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(__streambuf_type*) [with _CharT = char; _Traits = std::char_traits<char>; __streambuf_type = std::basic_streambuf<char>]'
+  339 |       operator<<(__streambuf_type* __sb);
+      |       ^~~~~~~~
+/usr/include/c++/14/ostream:339:36: note:   no known conversion for argument 1 from 'const std::vector<int>' to 'std::basic_ostream<char>::__streambuf_type*' {aka 'std::basic_streambuf<char>*'}
+  339 |       operator<<(__streambuf_type* __sb);
+      |                  ~~~~~~~~~~~~~~~~~~^~~~
+In file included from /usr/include/c++/14/bits/basic_string.h:47,
+                 from /usr/include/c++/14/string:54,
+                 from targets/xml_writer.cpp:1:
+/usr/include/c++/14/string_view:763:5: note: candidate: 'template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, basic_string_view<_CharT, _Traits>)'
+  763 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/14/string_view:763:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   'std::vector<int>' is not derived from 'std::basic_string_view<_CharT, _Traits>'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/bits/basic_string.h:4077:5: note: candidate: 'template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const __cxx11::basic_string<_CharT, _Traits, _Allocator>&)'
+ 4077 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/14/bits/basic_string.h:4077:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   'const std::vector<int>' is not derived from 'const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+In file included from /usr/include/c++/14/bits/memory_resource.h:38,
+                 from /usr/include/c++/14/string:68:
+/usr/include/c++/14/cstddef:125:5: note: candidate: 'template<class _IntegerType> constexpr std::__byte_op_t<_IntegerType> std::operator<<(byte, _IntegerType)'
+  125 |     operator<<(byte __b, _IntegerType __shift) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/14/cstddef:125:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:57: note:   cannot convert 'std::operator<< <char_traits<char> >((* & std::operator<< <char, char_traits<char>, allocator<char> >((* & std::operator<< <char_traits<char> >((* & std::operator<< <char, char_traits<char>, allocator<char> >((* &((udf::xml_writer*)this)->udf::xml_writer::basic_ast_visitor.basic_ast_visitor::os()), std::__cxx11::basic_string<char>(((std::__cxx11::basic_string<char>::size_type)lvl), 32, std::allocator<char>()))), ((const char*)"<"))), cdk::basic_node::label() const())), ((const char*)" position=\'"))' (type 'std::basic_ostream<char>') to type 'std::byte'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/14/bits/ios_base.h:46,
+                 from /usr/include/c++/14/ios:44,
+                 from /usr/include/c++/14/ostream:40:
+/usr/include/c++/14/system_error:339:5: note: candidate: 'template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const error_code&)'
+  339 |     operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __e)
+      |     ^~~~~~~~
+/usr/include/c++/14/system_error:339:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const std::error_code&'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:563:5: note: candidate: 'template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _CharT)'
+  563 |     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:563:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   deduced conflicting types for parameter '_CharT' ('char' and 'std::vector<int>')
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:573:5: note: candidate: 'template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, char)'
+  573 |     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:573:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:579:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char)'
+  579 |     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:579:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:590:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, signed char)'
+  590 |     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:590:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'signed char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:595:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, unsigned char)'
+  595 |     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:595:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'unsigned char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:604:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, wchar_t)' (deleted)
+  604 |     operator<<(basic_ostream<char, _Traits>&, wchar_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:604:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'wchar_t'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:609:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char8_t)' (deleted)
+  609 |     operator<<(basic_ostream<char, _Traits>&, char8_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:609:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'char8_t'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:614:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char16_t)' (deleted)
+  614 |     operator<<(basic_ostream<char, _Traits>&, char16_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:614:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'char16_t'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:618:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char32_t)' (deleted)
+  618 |     operator<<(basic_ostream<char, _Traits>&, char32_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:618:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'char32_t'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:624:5: note: candidate: 'template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, char8_t)' (deleted)
+  624 |     operator<<(basic_ostream<wchar_t, _Traits>&, char8_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:624:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'wchar_t' and 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:629:5: note: candidate: 'template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, char16_t)' (deleted)
+  629 |     operator<<(basic_ostream<wchar_t, _Traits>&, char16_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:629:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'wchar_t' and 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:633:5: note: candidate: 'template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, char32_t)' (deleted)
+  633 |     operator<<(basic_ostream<wchar_t, _Traits>&, char32_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:633:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'wchar_t' and 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:654:5: note: candidate: 'template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const _CharT*)'
+  654 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:654:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'const _CharT*' and 'std::vector<int>'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+In file included from /usr/include/c++/14/ostream:1022:
+/usr/include/c++/14/bits/ostream.tcc:307:5: note: candidate: 'template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const char*)'
+  307 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/14/bits/ostream.tcc:307:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const char*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:671:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char*)'
+  671 |     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:671:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const char*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:684:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const signed char*)'
+  684 |     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:684:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const signed char*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:689:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const unsigned char*)'
+  689 |     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:689:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const unsigned char*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:698:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const wchar_t*)' (deleted)
+  698 |     operator<<(basic_ostream<char, _Traits>&, const wchar_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:698:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const wchar_t*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:703:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char8_t*)' (deleted)
+  703 |     operator<<(basic_ostream<char, _Traits>&, const char8_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:703:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const char8_t*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:708:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char16_t*)' (deleted)
+  708 |     operator<<(basic_ostream<char, _Traits>&, const char16_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:708:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const char16_t*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:712:5: note: candidate: 'template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char32_t*)' (deleted)
+  712 |     operator<<(basic_ostream<char, _Traits>&, const char32_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:712:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:90: note:   cannot convert '((udf::tensor_index_node*)node)->udf::tensor_index_node::indexes()' (type 'const std::vector<int>') to type 'const char32_t*'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                             ~~~~~~~~~~~~~^~
+/usr/include/c++/14/ostream:718:5: note: candidate: 'template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, const char8_t*)' (deleted)
+  718 |     operator<<(basic_ostream<wchar_t, _Traits>&, const char8_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:718:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'wchar_t' and 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:723:5: note: candidate: 'template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, const char16_t*)' (deleted)
+  723 |     operator<<(basic_ostream<wchar_t, _Traits>&, const char16_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:723:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'wchar_t' and 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:727:5: note: candidate: 'template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, const char32_t*)' (deleted)
+  727 |     operator<<(basic_ostream<wchar_t, _Traits>&, const char32_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:727:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   mismatched types 'wchar_t' and 'char'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:810:5: note: candidate: 'template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&)'
+  810 |     operator<<(_Ostream&& __os, const _Tp& __x)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:810:5: note:   template argument deduction/substitution failed:
+/usr/include/c++/14/ostream: In substitution of 'template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&) [with _Ostream = std::basic_ostream<char>&; _Tp = std::vector<int>]':
+targets/xml_writer.cpp:414:91:   required from here
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:810:5: error: template constraint failure for 'template<class _Os, class _Tp>  requires (__derived_from_ios_base<_Os>) && requires(_Os& __os, const _Tp& __t) {__os << __t;} using std::__rvalue_stream_insertion_t = _Os&&'
+  810 |     operator<<(_Ostream&& __os, const _Tp& __x)
+      |     ^~~~~~~~
+/usr/include/c++/14/ostream:810:5: note: constraints not satisfied
+/usr/include/c++/14/ostream: In substitution of 'template<class _Os, class _Tp>  requires (__derived_from_ios_base<_Os>) && requires(_Os& __os, const _Tp& __t) {__os << __t;} using std::__rvalue_stream_insertion_t = _Os&& [with _Os = std::basic_ostream<char>&; _Tp = std::vector<int>]':
+/usr/include/c++/14/ostream:810:5:   required by substitution of 'template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&) [with _Ostream = std::basic_ostream<char>&; _Tp = std::vector<int>]'
+targets/xml_writer.cpp:414:91:   required from here
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+/usr/include/c++/14/ostream:777:13:   required for the satisfaction of '__derived_from_ios_base<_Os>' [with _Os = std::basic_ostream<char, std::char_traits<char> >&]
+/usr/include/c++/14/ostream:777:39: note: the expression 'is_class_v<_Tp> [with _Tp = std::basic_ostream<char, std::char_traits<char> >&]' evaluated to 'false'
+  777 |     concept __derived_from_ios_base = is_class_v<_Tp>
+      |                                       ^~~~~~~~~~~~~~~
+In file included from /usr/include/c++/14/memory:78,
+                 from targets/xml_writer.cpp:3:
+/usr/include/c++/14/bits/unique_ptr.h:1149:5: note: candidate: 'template<class _CharT, class _Traits, class _Tp, class _Dp> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const unique_ptr<_Up, _Ep>&) requires requires{std::operator<<::__os << std::operator<<::__p->get();}'
+ 1149 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/14/bits/unique_ptr.h:1149:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   'const std::vector<int>' is not derived from 'const std::unique_ptr<_Up, _Ep>'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+In file included from /usr/include/c++/14/memory:80:
+/usr/include/c++/14/bits/shared_ptr.h:70:5: note: candidate: 'template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const __shared_ptr<_Tp, _Lp>&)'
+   70 |     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/14/bits/shared_ptr.h:70:5: note:   template argument deduction/substitution failed:
+targets/xml_writer.cpp:414:91: note:   'const std::vector<int>' is not derived from 'const std::__shared_ptr<_Tp, _Lp>'
+  414 |   os() << std::string(lvl, ' ') << "<" << node->label() << " position='" << node->indexes() << "'>" << std::endl;
+      |                                                                                           ^
+make: *** [Makefile:46: targets/xml_writer.o] Error 1
+

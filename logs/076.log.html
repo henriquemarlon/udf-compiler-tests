@@ -1,0 +1,13 @@
+<pre>
+Checking project structure...
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+targets/postfix_writer.cpp: In member function 'virtual void udf::postfix_writer::do_sizeof_node(udf::sizeof_node*, int)':
+targets/postfix_writer.cpp:179:7: error: 'class cdk::basic_postfix_emitter' has no member named 'SIZEOF'
+  179 |   _pf.SIZEOF(); // or the correct emitter call for sizeof
+      |       ^~~~~~
+make: *** [Makefile:46: targets/postfix_writer.o] Error 1
+

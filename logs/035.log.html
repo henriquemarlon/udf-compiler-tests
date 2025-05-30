@@ -1,0 +1,106 @@
+<pre>
+Checking project structure...
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+udf_parser.y: warning: 78 shift/reduce conflicts [-Wconflicts-sr]
+udf_parser.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_double_node(cdk::double_node*, int)':
+targets/xml_writer.cpp:25:3: error: 'do_literal_node' was not declared in this scope; did you mean 'do_data_node'?
+   25 |   do_literal_node(node, lvl);
+      |   ^~~~~~~~~~~~~~~
+      |   do_data_node
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_not_node(cdk::not_node*, int)':
+targets/xml_writer.cpp:28:3: error: 'do_unary_operation_node' was not declared in this scope; did you mean 'do_unary_operation'?
+   28 |   do_unary_operation_node(node, lvl);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+      |   do_unary_operation
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_and_node(cdk::and_node*, int)':
+targets/xml_writer.cpp:31:3: error: 'do_binary_operation_node' was not declared in this scope; did you mean 'do_binary_operation'?
+   31 |   do_binary_operation_node(node, lvl);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~
+      |   do_binary_operation
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_or_node(cdk::or_node*, int)':
+targets/xml_writer.cpp:34:3: error: 'do_binary_operation_node' was not declared in this scope; did you mean 'do_binary_operation'?
+   34 |   do_binary_operation_node(node, lvl);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~
+      |   do_binary_operation
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_integer_node(cdk::integer_node*, int)':
+targets/xml_writer.cpp:49:3: error: 'do_literal_node' was not declared in this scope; did you mean 'do_data_node'?
+   49 |   do_literal_node(node, lvl);
+      |   ^~~~~~~~~~~~~~~
+      |   do_data_node
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_string_node(cdk::string_node*, int)':
+targets/xml_writer.cpp:53:3: error: 'do_literal_node' was not declared in this scope; did you mean 'do_data_node'?
+   53 |   do_literal_node(node, lvl);
+      |   ^~~~~~~~~~~~~~~
+      |   do_data_node
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_for_node(udf::for_node*, int)':
+targets/xml_writer.cpp:162:9: error: 'class udf::for_node' has no member named 'step'
+  162 |   node->step()->accept(this, lvl + 4);
+      |         ^~~~
+targets/xml_writer.cpp:165:9: error: 'class udf::for_node' has no member named 'instruction'
+  165 |   node->instruction()->accept(this, lvl + 4);
+      |         ^~~~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_function_declaration_node(udf::function_declaration_node*, int)':
+targets/xml_writer.cpp:249:3: error: 'ASSERT_SAFE' was not declared in this scope
+  249 |   ASSERT_SAFE;
+      |   ^~~~~~~~~~~
+targets/xml_writer.cpp:250:7: error: '_inFunctionBody' was not declared in this scope
+  250 |   if (_inFunctionBody || _inFunctionArgs) {
+      |       ^~~~~~~~~~~~~~~
+targets/xml_writer.cpp:250:26: error: '_inFunctionArgs' was not declared in this scope
+  250 |   if (_inFunctionBody || _inFunctionArgs) {
+      |                          ^~~~~~~~~~~~~~~
+targets/xml_writer.cpp:251:5: error: 'error' was not declared in this scope; did you mean 'perror'?
+  251 |     error(node->lineno(), "cannot declare function in body or in args");
+      |     ^~~~~
+      |     perror
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_function_definition_node(udf::function_definition_node*, int)':
+targets/xml_writer.cpp:273:3: error: 'ASSERT_SAFE' was not declared in this scope
+  273 |   ASSERT_SAFE;
+      |   ^~~~~~~~~~~
+targets/xml_writer.cpp:274:7: error: '_inFunctionBody' was not declared in this scope
+  274 |   if (_inFunctionBody || _inFunctionArgs) {
+      |       ^~~~~~~~~~~~~~~
+targets/xml_writer.cpp:274:26: error: '_inFunctionArgs' was not declared in this scope
+  274 |   if (_inFunctionBody || _inFunctionArgs) {
+      |                          ^~~~~~~~~~~~~~~
+targets/xml_writer.cpp:275:5: error: 'error' was not declared in this scope; did you mean 'perror'?
+  275 |     error(node->lineno(), "cannot define function in body or in args");
+      |     ^~~~~
+      |     perror
+targets/xml_writer.cpp:280:3: error: '_function' was not declared in this scope
+  280 |   _function = new_symbol();
+      |   ^~~~~~~~~
+targets/xml_writer.cpp:283:3: error: '_inFunctionBody' was not declared in this scope
+  283 |   _inFunctionBody = true;
+      |   ^~~~~~~~~~~~~~~
+targets/xml_writer.cpp:291:5: error: '_inFunctionArgs' was not declared in this scope
+  291 |     _inFunctionArgs = true; //FIXME really needed?
+      |     ^~~~~~~~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_return_node(udf::return_node*, int)':
+targets/xml_writer.cpp:341:3: error: 'ASSERT_SAFE' was not declared in this scope
+  341 |   ASSERT_SAFE;
+      |   ^~~~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_sizeof_node(udf::sizeof_node*, int)':
+targets/xml_writer.cpp:352:9: error: 'class udf::sizeof_node' has no member named 'expression'; did you mean 'expression_node'?
+  352 |   node->expression()->accept(this, lvl + 2);
+      |         ^~~~~~~~~~
+      |         expression_node
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_variable_declaration_node(udf::variable_declaration_node*, int)':
+targets/xml_writer.cpp:359:3: error: 'ASSERT_SAFE' was not declared in this scope
+  359 |   ASSERT_SAFE;
+      |   ^~~~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_write_node(udf::write_node*, int)':
+targets/xml_writer.cpp:376:3: error: 'ASSERT_SAFE' was not declared in this scope
+  376 |   ASSERT_SAFE;
+      |   ^~~~~~~~~~~
+targets/xml_writer.cpp:378:9: error: 'class udf::write_node' has no member named 'arguments'; did you mean 'argument'?
+  378 |   node->arguments()->accept(this, lvl + 2);
+      |         ^~~~~~~~~
+      |         argument
+make: *** [Makefile:46: targets/xml_writer.o] Error 1
+

@@ -1,0 +1,42 @@
+<pre>
+Checking project structure...
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+udf_parser.y: In function 'int yyparse(std::shared_ptr<cdk::compiler>)':
+udf_parser.y:67:101: error: no matching function for call to 'udf::read_node::read_node(int, cdk::lvalue_node*&)'
+   67 |      | tREAD lval ';'                   { $$ = new udf::read_node(LINE, $2); }
+      |                                                                                                     ^
+In file included from .auto/all_nodes.h:54,
+                 from udf_parser.y:8:
+./ast/read_node.h:13:12: note: candidate: 'udf::read_node::read_node(int)'
+   13 |     inline read_node(int lineno) : cdk::expression_node(lineno) {
+      |            ^~~~~~~~~
+./ast/read_node.h:13:12: note:   candidate expects 1 argument, 2 provided
+./ast/read_node.h:10:9: note: candidate: 'udf::read_node::read_node(const udf::read_node&)'
+   10 |   class read_node: public cdk::expression_node {
+      |         ^~~~~~~~~
+./ast/read_node.h:10:9: note:   candidate expects 1 argument, 2 provided
+./ast/read_node.h:10:9: note: candidate: 'udf::read_node::read_node(udf::read_node&&)'
+./ast/read_node.h:10:9: note:   candidate expects 1 argument, 2 provided
+udf_parser.y:68:62: error: expected type-specifier
+   68 |      | tWHILE '(' expr ')' stmt         { $$ = new udf::while_node(LINE, $3, $5); }
+      |                                                              ^~~
+udf_parser.y:70:143: error: no matching function for call to 'udf::if_else_node::if_else_node(int, cdk::expression_node*&, cdk::basic_node*&, cdk::basic_node*&)'
+   70 |      | tIF '(' expr ')' stmt tELSE stmt { $$ = new udf::if_else_node(LINE, $3, $5, $7); }
+      |                                                                                                                                               ^
+In file included from .auto/all_nodes.h:49:
+./ast/if_else_node.h:20:5: note: candidate: 'udf::if_else_node::if_else_node(int, cdk::expression_node*, cdk::basic_node*, cdk::basic_node*, cdk::sequence_node*)'
+   20 |     if_else_node(int lineno, cdk::expression_node *condition, cdk::basic_node *thenblock,
+      |     ^~~~~~~~~~~~
+./ast/if_else_node.h:20:5: note:   candidate expects 5 arguments, 4 provided
+./ast/if_else_node.h:11:9: note: candidate: 'constexpr udf::if_else_node::if_else_node(const udf::if_else_node&)'
+   11 |   class if_else_node : public cdk::basic_node {
+      |         ^~~~~~~~~~~~
+./ast/if_else_node.h:11:9: note:   candidate expects 1 argument, 4 provided
+./ast/if_else_node.h:11:9: note: candidate: 'constexpr udf::if_else_node::if_else_node(udf::if_else_node&&)'
+./ast/if_else_node.h:11:9: note:   candidate expects 1 argument, 4 provided
+make: *** [Makefile:40: udf_parser.tab.o] Error 1
+

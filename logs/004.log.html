@@ -1,0 +1,66 @@
+<pre>
+Checking project structure...
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+egrep: warning: egrep is obsolescent; using grep -E
+fgrep: warning: fgrep is obsolescent; using grep -F
+udf_parser.y: warning: 41 shift/reduce conflicts [-Wconflicts-sr]
+udf_parser.y: warning: 2 reduce/reduce conflicts [-Wconflicts-rr]
+udf_parser.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+targets/xml_writer.cpp: In function 'std::string qualifier_name(int)':
+targets/xml_writer.cpp:21:20: error: 'tPUBLIC' was not declared in this scope
+   21 |   if (qualifier == tPUBLIC) return "public";
+      |                    ^~~~~~~
+targets/xml_writer.cpp:22:20: error: 'tREQUIRE' was not declared in this scope
+   22 |   if (qualifier == tREQUIRE)
+      |                    ^~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_function_declaration_node(udf::function_declaration_node*, int)':
+targets/xml_writer.cpp:248:3: error: 'open_tag' was not declared in this scope; did you mean 'openTag'?
+  248 |   open_tag(node, lvl);
+      |   ^~~~~~~~
+      |   openTag
+targets/xml_writer.cpp:253:3: error: 'close_tag' was not declared in this scope; did you mean 'closeTag'?
+  253 |   close_tag("qualifier", lvl + 2);
+      |   ^~~~~~~~~
+      |   closeTag
+targets/xml_writer.cpp:262:3: error: 'print_type' was not declared in this scope
+  262 |   print_type(node->type(), lvl + 4);
+      |   ^~~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_sizeof_node(udf::sizeof_node*, int)':
+targets/xml_writer.cpp:360:22: error: cannot convert 'udf::sizeof_node* const' to 'cdk::unary_operation_node*'
+  360 |   do_unary_operation(node, lvl);
+      |                      ^~~~
+      |                      |
+      |                      udf::sizeof_node* const
+targets/xml_writer.cpp:68:76: note:   initializing argument 1 of 'void udf::xml_writer::do_unary_operation(cdk::unary_operation_node*, int)'
+   68 | void udf::xml_writer::do_unary_operation(cdk::unary_operation_node * const node, int lvl) {
+      |                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_tensor_node(udf::tensor_node*, int)':
+targets/xml_writer.cpp:388:13: error: 'class udf::tensor_node' has no member named 'dimensions'
+  388 |   if (node->dimensions()) {
+      |             ^~~~~~~~~~
+targets/xml_writer.cpp:390:11: error: 'class udf::tensor_node' has no member named 'dimensions'
+  390 |     node->dimensions()->accept(this, lvl + 4);
+      |           ^~~~~~~~~~
+targets/xml_writer.cpp:394:13: error: 'class udf::tensor_node' has no member named 'initializer'
+  394 |   if (node->initializer()) {
+      |             ^~~~~~~~~~~
+targets/xml_writer.cpp:396:11: error: 'class udf::tensor_node' has no member named 'initializer'
+  396 |     node->initializer()->accept(this, lvl + 4);
+      |           ^~~~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_tensor_index_node(udf::tensor_index_node*, int)':
+targets/xml_writer.cpp:413:9: error: 'class udf::tensor_index_node' has no member named 'index'; did you mean 'indices'?
+  413 |   node->index()->accept(this, lvl + 4);
+      |         ^~~~~
+      |         indices
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_tensor_dim_node(udf::tensor_dim_node*, int)':
+targets/xml_writer.cpp:426:63: error: 'class udf::tensor_dim_node' has no member named 'dimension'
+  426 |   os() << std::string(lvl + 2, ' ') << "<dimension>" << node->dimension() << "</dimension>" << std::endl;
+      |                                                               ^~~~~~~~~
+targets/xml_writer.cpp: In member function 'virtual void udf::xml_writer::do_tensor_reshape_node(udf::tensor_reshape_node*, int)':
+targets/xml_writer.cpp:458:9: error: 'class udf::tensor_reshape_node' has no member named 'shape'
+  458 |   node->shape()->accept(this, lvl + 4);
+      |         ^~~~~
+make: *** [Makefile:46: targets/xml_writer.o] Error 1
+
